@@ -1,0 +1,46 @@
+{
+  "name": "ern-container-publisher-cocoapod-git",
+  "version": "1.0.0",
+  "description": "Electrode Native CocoaPod Git Container Publisher",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "homepage": "http://www.electrode.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electrode-io/ern-container-publisher-cocoapod-git.git"
+  },
+  "bugs": {
+    "url": "https://github.com/electrode-io/ern-container-publisher-cocoapod-git/issues"
+  },
+  "keywords": [
+    "electrode",
+    "electrode-native",
+    "ern",
+    "react-native",
+    "ern-container-publisher"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ern-container-publisher": "0.45.5",
+    "ern-core": "0.45.5",
+    "fs-extra": "9.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.25",
+    "prettier": "^2.2.1",
+    "shelljs": "^0.8.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register test/*.js",
+    "build": "tsc",
+    "prepublish": "yarn build"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
