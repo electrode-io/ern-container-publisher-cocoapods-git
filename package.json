@@ -37,7 +37,7 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register test/*.js",
-    "build": "tsc",
+    "build": "tsc && cp src/ElectrodeContainer.podspec.mustache dist",
     "prepublish": "yarn build"
   },
   "engines": {
