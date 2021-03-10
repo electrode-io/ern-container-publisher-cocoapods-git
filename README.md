@@ -64,6 +64,15 @@ Please note that the branch needs to be created manually before hand in the remo
 - `allowVersionOverwrite` : A boolean flag to allow overwriting the version (tag).\
 Defaults to false.
 
+- `podspec` : An object containing one or more podspec field(s) value(s).
+  - `name` :  The name of the Pod _(default: `ElectrodeContainer`)_
+  - `summary` : A short description of the Pod _(default: `Electrode Native Container`)_
+  - `homepage` : The URL of the homepage of the Pod _(default: `https://native.electrode.io`)_
+  - `license`: The license of the Pod _(default: `MIT`)_
+  - `author`:  Name of the library maintainer _(default: `Electrode Native Platform`)_
+  - `swift_version` : The version of swift that this specification supports _(default: `5.0`)_
+  - `deployment_target` : The minimum deployment target of iOS platform _(default: `11.0`)_
+
 To automatically publish Cauldron generated Containers of a target native application and platform, the `ern cauldron add publisher` command can be used as follow:
 
 ```sh
@@ -78,7 +87,16 @@ This will result in the following publisher entry in Cauldron :
   "url": "[gitRepoUrl]",
   "extra": {
     "branch": "[branch_name]",
-    "allowVersionOverwrite": "[allowVersionOverwrite]"
+    "allowVersionOverwrite": "[allowVersionOverwrite]",
+    "podspec": {
+      "name": "[name]",
+      "summary": "[summary]",
+      "homepage": "[homepage]",
+      "license": "[license]",
+      "author": "[author]",
+      "swift_version": "[swift_version]",
+      "deployment_target": "[deployment_target]"
+    }
   }
 }
 ```

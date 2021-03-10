@@ -17,7 +17,7 @@ export default class CocoaPodGitPublisher implements ContainerPublisher {
     containerVersion,
     url,
     platform,
-    extra,
+    extra
   }: {
     containerPath: string
     containerVersion: string
@@ -26,7 +26,16 @@ export default class CocoaPodGitPublisher implements ContainerPublisher {
     extra?: {
       branch?: string,
       subdir?: string,
-      allowVersionOverwrite?: boolean
+      allowVersionOverwrite?: boolean,
+      podspec?: {
+        name?: string,
+        summary?: string,
+        homepage?: string,
+        license?: string,
+        author?: string,
+        swift_version?: string,
+        deployment_target?: string
+      }
     }
   }) {
     const workingGitDir = createTmpDir()
@@ -67,7 +76,17 @@ export default class CocoaPodGitPublisher implements ContainerPublisher {
       shell.cp('-Rf', path.join(containerPath, 'ElectrodeContainer.xcframework'), workingGitDir)
       await mustacheUtils.mustacheRenderToOutputFileUsingTemplateFile(
         path.join(__dirname, 'ElectrodeContainer.podspec.mustache'),
-        {containerVersion, url},
+        {
+          containerVersion,
+          url,
+          name: extra?.podspec?.name ?? "ElectrodeContainer",
+          summary: extra?.podspec?.summary ?? "Electrode Native Container",
+          homepage: extra?.podspec?.homepage ?? "https://native.electrode.io",
+          license: extra?.podspec?.license ?? "MIT",
+          author: extra?.podspec?.author ?? "Electrode Native Platform",
+          swift_version: extra?.podspec?.swift_version ?? "5.0",
+          deployment_target: extra?.podspec?.deployment_target ?? "11.0"
+        },
         path.join(workingGitDir, 'ElectrodeContainer.podspec')
       )
 
